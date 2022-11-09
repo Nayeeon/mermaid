@@ -1,0 +1,94 @@
+# Mermaid
+-순서도 실습
+- 첫번째 실습
+
+```mermaid
+sequenceDiagram
+    participant A as Data Updater
+    participant B as DB
+    loop 1시간마다 수행
+        A ->> B: send update data
+        B -->> A: update result
+    end
+```
+
+```mermaid
+sequenceDiagram
+    actor A as 사용자
+    participant B as 서버
+    
+    A ->> B: 서비스 상태 요청
+    
+    alt 가능
+        B -> A: 서비스 가능 상태입니다.
+    else 불가능
+        B -> A: 현재 서비스 중단 상태입니다.
+    else 점검중
+        B -> A: 점검중... 기다려 주세요
+    end
+```
+
+```mermaid
+sequenceDiagram
+    par 강감찬 to 이순신
+        강감찬 ->> 이순신: 안녕하세요?
+
+    and 강감찬 to 홍길동
+        강감찬 ->> 홍길동: 안녕하세요?
+    end
+    
+    이순신 -->> 강감찬: 강 장군! 오랜만이오.
+    홍길동 -->> 강감찬: 장군님, 홍길동 여기 있습니다.
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor A as 사용자
+    participant B as 인증 시스템
+    A ->>+ B: 아이디/비밀번호 입력
+    A ->>+ B: catcha 입력
+    B -->>- A: catcha 성공
+    B -->>- A: 인증 완료
+```
+
+
+```mermaid
+classDiagram
+    direction RL
+    class Person{
+        <<abstract>>
+        +name: str
+        +phoneNumber: str
+        +emailAddress: str
+        +purchaseParkingPass()
+    }
+    class Student{
+        <<abstract>>
+        +studentNumber: int
+        +averageMark: int
+        +isEligibleToEnroll(str) bool
+        +getSeminarsTaken():int
+    }
+    class Professor{
+        -salary: int
+        #staffNumber: int
+        -yearsOfService: int
+        +numberOfClaseses: int
+    }
+    class Address{
+        +street: str
+        +city: str
+        +state: str
+        +postalCode: int
+        +country: str
+        -validate() bool
+        +outputAsLabel() str
+    }
+    
+    Person <|-- Student
+    Person <|-- Professor
+    Student "0..*"<--"1..5" Professor : supervise
+    Person "0..1"-->"1" Address : lives in
+```
+
